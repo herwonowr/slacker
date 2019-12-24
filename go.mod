@@ -1,4 +1,4 @@
-module github.com/shomali11/slacker
+module github.com/herwonowr/slacker
 
 require (
 	github.com/gorilla/websocket v1.4.0 // indirect
@@ -8,3 +8,5 @@ require (
 	github.com/shomali11/proper v0.0.0-20180607004733-233a9a872c30
 	github.com/stretchr/testify v1.3.0 // indirect
 )
+
+go 1.13

@@ -203,11 +203,15 @@ func (s *Slacker) handleMessage(ctx context.Context, event *slack.MessageEvent) 
 
 	response := s.responseConstructor(event.Channel, s.client, s.rtm)
 
+	parseCommand := strings.Fields(event.Text)
+	command := parseCommand[0]
 	for _, cmd := range s.botCommands {
-		parameters, isMatch := cmd.Match(event.Text)
+		_, isMatch := cmd.Match(command)
 		if !isMatch {
 			continue
 		}
+
+		parameters, _ := cmd.Match(event.Text)
 
 		request := s.requestConstructor(ctx, event, parameters)
 		if cmd.Definition().AuthorizationFunc != nil && !cmd.Definition().AuthorizationFunc(request) {
